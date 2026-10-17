@@ -1,5 +1,12 @@
--- CRIAR O BANCO DE DADOS
+-- ========================================================
+-- 1. CRIAR O BANCO DE DADOS E USÁ-LO
+-- ========================================================
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8;
+USE `mydb`;
+
+-- ========================================================
+-- 2. CRIAR AS TABELAS
+-- ========================================================
 
 -- Table `mydb`.`TIPO_PERFIL`
 CREATE TABLE IF NOT EXISTS `mydb`.`TIPO_PERFIL` (
@@ -16,8 +23,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`GRUPO_CANAL` (
   `descricao` VARCHAR(255) NOT NULL,
   `data_criacao` DATETIME NOT NULL,
   PRIMARY KEY (`id_grupo`)
-  );
-
+);
 
 -- Table `mydb`.`USUARIO`
 CREATE TABLE IF NOT EXISTS `mydb`.`USUARIO` (
@@ -31,14 +37,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`USUARIO` (
   `GRUPO_CANAL_id_grupo` INT NOT NULL,
   PRIMARY KEY (`id_usuario`),
   FOREIGN KEY (`TIPO_PERFIL_id_perfil`)
-   REFERENCES `mydb`.`TIPO_PERFIL` (`id_perfil`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION,
+    REFERENCES `mydb`.`TIPO_PERFIL` (`id_perfil`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   FOREIGN KEY (`GRUPO_CANAL_id_grupo`)
-   REFERENCES `mydb`.`GRUPO_CANAL` (`id_grupo`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION
-   );
+    REFERENCES `mydb`.`GRUPO_CANAL` (`id_grupo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
 
 -- Table `mydb`.`MEMBRO_GRUPO`
 CREATE TABLE IF NOT EXISTS `mydb`.`MEMBRO_GRUPO` (
@@ -48,14 +54,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`MEMBRO_GRUPO` (
   `USUARIO_id_usuario` INT NOT NULL,
   PRIMARY KEY (`id_membro_grupo`),
   FOREIGN KEY (`GRUPO_CANAL_id_grupo`)
-   REFERENCES `mydb`.`GRUPO_CANAL` (`id_grupo`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION,
+    REFERENCES `mydb`.`GRUPO_CANAL` (`id_grupo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   FOREIGN KEY (`USUARIO_id_usuario`)
-   REFERENCES `mydb`.`USUARIO` (`id_usuario`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION
-   );
+    REFERENCES `mydb`.`USUARIO` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
 
 -- Table `mydb`.`MENSAGEM`
 CREATE TABLE IF NOT EXISTS `mydb`.`MENSAGEM` (
@@ -66,13 +72,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`MENSAGEM` (
   `GRUPO_CANAL_id_grupo` INT NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   FOREIGN KEY (`USUARIO_id_usuario`)
-   REFERENCES `mydb`.`USUARIO` (`id_usuario`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION,
+    REFERENCES `mydb`.`USUARIO` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   FOREIGN KEY (`GRUPO_CANAL_id_grupo`)
-   REFERENCES `mydb`.`GRUPO_CANAL` (`id_grupo`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION
+    REFERENCES `mydb`.`GRUPO_CANAL` (`id_grupo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 );
 
 -- Table `mydb`.`COMENTARIO`
@@ -82,20 +88,20 @@ CREATE TABLE IF NOT EXISTS `mydb`.`COMENTARIO` (
   `data_comentario` DATETIME NOT NULL,
   `MENSAGEM_id_mensagem` INT NOT NULL,
   `USUARIO_id_usuario` INT NOT NULL,
-  `COMENTARIO_id_comentario` INT NOT NULL,
+  `COMENTARIO_id_comentario` INT NULL, -- Ajustado para NULL para permitir comentários principais
   PRIMARY KEY (`id_comentario`),
   FOREIGN KEY (`MENSAGEM_id_mensagem`)
-   REFERENCES `mydb`.`MENSAGEM` (`id_mensagem`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION,
+    REFERENCES `mydb`.`MENSAGEM` (`id_mensagem`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   FOREIGN KEY (`USUARIO_id_usuario`)
-   REFERENCES `mydb`.`USUARIO` (`id_usuario`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION,
+    REFERENCES `mydb`.`USUARIO` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   FOREIGN KEY (`COMENTARIO_id_comentario`)
-   REFERENCES `mydb`.`COMENTARIO` (`id_comentario`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION
+    REFERENCES `mydb`.`COMENTARIO` (`id_comentario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 );
 
 -- Table `mydb`.`REAÇÃO_CURTIDA`
@@ -107,11 +113,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`REACAO_CURTIDA` (
   `USUARIO_id_usuario` INT NOT NULL,
   PRIMARY KEY (`id_reacao`),
   FOREIGN KEY (`MENSAGEM_id_mensagem`)
-   REFERENCES `mydb`.`MENSAGEM` (`id_mensagem`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION,
+    REFERENCES `mydb`.`MENSAGEM` (`id_mensagem`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   FOREIGN KEY (`USUARIO_id_usuario`)
-   REFERENCES `mydb`.`USUARIO` (`id_usuario`)
-   ON DELETE NO ACTION
-   ON UPDATE NO ACTION
+    REFERENCES `mydb`.`USUARIO` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 );
