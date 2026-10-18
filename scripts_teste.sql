@@ -18,7 +18,7 @@ INSERT INTO `mydb`.`GRUPO_CANAL` (`nome`, `descricao`) VALUES
 INSERT INTO `mydb`.`USUARIO` (`nome`, `email`, `senha`, `username`, `TIPO_PERFIL_id_perfil`, `GRUPO_CANAL_id_grupo`) VALUES 
 ('Vinicius Silva', 'vinicius@email.com', 'hash1', 'vini_dev', 1, 1),
 ('Ana Souza', 'ana@email.com', 'hash2', 'anasouza', 2, 2),
-('Carlos Eduardo', 'carlos@email.com', 'hash3', 'carlosedu',, 3, 1),
+('Carlos Eduardo', 'carlos@email.com', 'hash3', 'carlosedu', 3, 1),
 ('Mariana Lima', 'mariana@email.com', 'hash4', 'marilima', 3, 3);
 
 -- Inserir Membros dos Grupos
@@ -31,7 +31,7 @@ INSERT INTO `mydb`.`MEMBRO_GRUPO` (`GRUPO_CANAL_id_grupo`, `USUARIO_id_usuario`)
 -- Inserir Mensagens
 INSERT INTO `mydb`.`MENSAGEM` (`conteudo`, `USUARIO_id_usuario`, `GRUPO_CANAL_id_grupo`) VALUES 
 ('Olá pessoal! Alguém me sabe dizer como estruturar chaves estrangeiras?', 1, 1),
-('Sim, Vinicius! Deves usar a restrição FOREIGN KEY.',, 3, 1),
+('Sim, Vinicius! Deves usar a restrição FOREIGN KEY.', 3, 1),
 ('Bom dia a todos!', 2, 2);
 
 -- Inserir Comentários
