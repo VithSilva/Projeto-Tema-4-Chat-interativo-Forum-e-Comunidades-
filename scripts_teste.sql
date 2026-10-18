@@ -42,5 +42,5 @@ INSERT INTO `mydb`.`COMENTARIO` (`texto`, `MENSAGEM_id_mensagem`, `USUARIO_id_us
 
 -- Inserir Reações / Curtidas
 INSERT INTO `mydb`.`REACAO_CURTIDA` (`tipo_reacao`, `MENSAGEM_id_mensagem`, `USUARIO_id_usuario`) VALUES 
-('Gosto',, 1, 2),
+('Gosto', 1, 2),
 ('Amei', 2, 1);
