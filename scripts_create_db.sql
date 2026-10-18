@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`GRUPO_CANAL` (
   `id_grupo` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL UNIQUE,
   `descricao` VARCHAR(255) NOT NULL,
-  `data_criacao` DATETIME NOT NULL,
+  `data_criacao` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_grupo`)
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`USUARIO` (
   `email` VARCHAR(100) NOT NULL UNIQUE,
   `senha` VARCHAR(100) NOT NULL,
   `username` VARCHAR(50) NOT NULL UNIQUE,
-  `data_cadastro` DATETIME NOT NULL,
+  `data_cadastro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `TIPO_PERFIL_id_perfil` INT NOT NULL,
   `GRUPO_CANAL_id_grupo` INT NOT NULL,
   PRIMARY KEY (`id_usuario`),
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`USUARIO` (
 -- Table `mydb`.`MEMBRO_GRUPO`
 CREATE TABLE IF NOT EXISTS `mydb`.`MEMBRO_GRUPO` (
   `id_membro_grupo` INT NOT NULL AUTO_INCREMENT,
-  `data_entrada` DATETIME NOT NULL,
+  `data_entrada` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `GRUPO_CANAL_id_grupo` INT NOT NULL,
   `USUARIO_id_usuario` INT NOT NULL,
   PRIMARY KEY (`id_membro_grupo`),
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`MEMBRO_GRUPO` (
 CREATE TABLE IF NOT EXISTS `mydb`.`MENSAGEM` (
   `id_mensagem` INT NOT NULL AUTO_INCREMENT,
   `conteudo` TEXT(1000) NOT NULL,
-  `data_envio` DATETIME NOT NULL,
+  `data_envio` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `USUARIO_id_usuario` INT NOT NULL,
   `GRUPO_CANAL_id_grupo` INT NOT NULL,
   PRIMARY KEY (`id_mensagem`),
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`MENSAGEM` (
 CREATE TABLE IF NOT EXISTS `mydb`.`COMENTARIO` (
   `id_comentario` INT NOT NULL AUTO_INCREMENT,
   `texto` VARCHAR(500) NOT NULL,
-  `data_comentario` DATETIME NOT NULL,
+  `data_comentario` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `MENSAGEM_id_mensagem` INT NOT NULL,
   `USUARIO_id_usuario` INT NOT NULL,
   `COMENTARIO_id_comentario` INT NULL, -- Ajustado para NULL para permitir comentários principais
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`COMENTARIO` (
 CREATE TABLE IF NOT EXISTS `mydb`.`REACAO_CURTIDA` (
   `id_reacao` INT NOT NULL AUTO_INCREMENT,
   `tipo_reacao` VARCHAR(25) NOT NULL,
-  `data_reacao` DATETIME NULL,
+  `data_reacao` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `MENSAGEM_id_mensagem` INT NOT NULL,
   `USUARIO_id_usuario` INT NOT NULL,
   PRIMARY KEY (`id_reacao`),
