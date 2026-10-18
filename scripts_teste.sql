@@ -1,46 +1,16 @@
 -- ========================================================
--- 3. INSERIR DADOS DE TESTE (MOCK DATA)
+-- 1. Verificar quais são os usuários que estão cadastrados em um determinado grupo
+--EX: Quais são os usuários que estão cadastrados no grupo "Banco de Dados":
 -- ========================================================
-
--- Inserir Tipos de Perfil
-INSERT INTO `mydb`.`TIPO_PERFIL` (`nome`, `descricao`) VALUES 
-('Administrador', 'Acesso total a todas as configurações e moderação do sistema.'),
-('Moderador', 'Pode gerir mensagens e comentários.'),
-('Membro', 'Utilizador comum.');
-
--- Inserir Grupos / Canais
-INSERT INTO `mydb`.`GRUPO_CANAL` (`nome`, `descricao`) VALUES 
-('Programação Web', 'Espaço para dúvidas de HTML, CSS e Flask.'),
-('Banco de Dados', 'Discussões sobre modelagem SQL e MySQL.'),
-('Geral', 'Conversas livres.');
-
--- Inserir Utilizadores
-INSERT INTO `mydb`.`USUARIO` (`nome`, `email`, `senha`, `username`, `TIPO_PERFIL_id_perfil`, `GRUPO_CANAL_id_grupo`) VALUES 
-('Vinicius Silva', 'vinicius@email.com', 'hash1', 'vini_dev', 1, 1),
-('Ana Souza', 'ana@email.com', 'hash2', 'anasouza', 2, 2),
-('Carlos Eduardo', 'carlos@email.com', 'hash3', 'carlosedu', 3, 1),
-('Mariana Lima', 'mariana@email.com', 'hash4', 'marilima', 3, 3);
-
--- Inserir Membros dos Grupos
-INSERT INTO `mydb`.`MEMBRO_GRUPO` (`GRUPO_CANAL_id_grupo`, `USUARIO_id_usuario`) VALUES 
-(1, 1),
-(2, 1),
-(2, 2),
-(1, 3);
-
--- Inserir Mensagens
-INSERT INTO `mydb`.`MENSAGEM` (`conteudo`, `USUARIO_id_usuario`, `GRUPO_CANAL_id_grupo`) VALUES 
-('Olá pessoal! Alguém me sabe dizer como estruturar chaves estrangeiras?', 1, 2),
-('Alguem sabe qual são os melhores frameworks para back-end no Python?', 3, 1);
-
--- Inserir Comentários
-INSERT INTO `mydb`.`COMENTARIO` (`texto`, `MENSAGEM_id_mensagem`, `USUARIO_id_usuario`, `COMENTARIO_id_comentario`) VALUES 
-('Vinicius, deve usar a restrição FOREIGN KEY.', 1, 2, NULL),
-('Obrigado pela explicação, Ana Souza!', 1, 1, 1),
-('Carlos, eu recomendo utilizar o Flask ou Django para criar seus projetos back-end utilizando o Python!', 2, 1, NULL),
-('Interessante, agradeço as recomendações Vinícius!', 2, 3, 3);
-
--- Inserir Reações / Curtidas
-INSERT INTO `mydb`.`REACAO_CURTIDA` (`tipo_reacao`, `MENSAGEM_id_mensagem`, `USUARIO_id_usuario`) VALUES 
-('Gosto', 1, 2),
-('Amei', 2, 1);
+SELECT 
+    u.id_usuario,
+    gc.nome AS nome_grupo,
+    u.nome AS nome_utilizador,
+    u.username,
+    u.email,
+    mg.data_entrada
+FROM `mydb`.`MEMBRO_GRUPO` mg
+JOIN `mydb`.`USUARIO` u ON mg.USUARIO_id_usuario = u.id_usuario
+JOIN `mydb`.`GRUPO_CANAL` gc ON mg.GRUPO_CANAL_id_grupo = gc.id_grupo
+WHERE mg.GRUPO_CANAL_id_grupo = 2
+ORDER BY mg.data_entrada ASC;
