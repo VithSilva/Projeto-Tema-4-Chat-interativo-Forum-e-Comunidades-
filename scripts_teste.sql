@@ -30,15 +30,15 @@ INSERT INTO `mydb`.`MEMBRO_GRUPO` (`GRUPO_CANAL_id_grupo`, `USUARIO_id_usuario`)
 
 -- Inserir Mensagens
 INSERT INTO `mydb`.`MENSAGEM` (`conteudo`, `USUARIO_id_usuario`, `GRUPO_CANAL_id_grupo`) VALUES 
-('Olá pessoal! Alguém me sabe dizer como estruturar chaves estrangeiras?', 1, 1),
-('Sim, Vinicius! Deves usar a restrição FOREIGN KEY.', 3, 1),
-('Bom dia a todos!', 2, 2);
+('Olá pessoal! Alguém me sabe dizer como estruturar chaves estrangeiras?', 1, 2),
+('Alguem sabe qual são os melhores frameworks para back-end no Python?', 3, 1);
 
 -- Inserir Comentários
 INSERT INTO `mydb`.`COMENTARIO` (`texto`, `MENSAGEM_id_mensagem`, `USUARIO_id_usuario`, `COMENTARIO_id_comentario`) VALUES 
-('Obrigado pela explicação, Carlos!', 2, 1, NULL),
-('De nada, Vinicius!', 2, 3, 1),
-('Bom dia Mariana!', 3, 4, NULL);
+('Vinicius, deve usar a restrição FOREIGN KEY.', 1, 2, NULL),
+('Obrigado pela explicação, Ana Souza!', 1, 1, 1),
+('Carlos, eu recomendo utilizar o Flask ou Django para criar seus projetos back-end utilizando o Python!', 2, 1, NULL),
+('Interessante, agradeço as recomendações Vinícius!', 2, 3, 3);
 
 -- Inserir Reações / Curtidas
 INSERT INTO `mydb`.`REACAO_CURTIDA` (`tipo_reacao`, `MENSAGEM_id_mensagem`, `USUARIO_id_usuario`) VALUES 
