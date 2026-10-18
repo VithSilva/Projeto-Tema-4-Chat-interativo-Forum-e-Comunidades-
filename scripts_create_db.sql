@@ -134,11 +134,11 @@ INSERT INTO `mydb`.`GRUPO_CANAL` (`nome`, `descricao`) VALUES
 ('Geral', 'Conversas livres.');
 
 -- Inserir Utilizadores
-INSERT INTO `mydb`.`USUARIO` (`nome`, `email`, `senha`, `username`, `TIPO_PERFIL_id_perfil`, `GRUPO_CANAL_id_grupo`) VALUES 
-('Vinicius Silva', 'vinicius@email.com', 'hash1', 'vini_dev', 1, 1),
-('Ana Souza', 'ana@email.com', 'hash2', 'anasouza', 2, 2),
-('Carlos Eduardo', 'carlos@email.com', 'hash3', 'carlosedu', 3, 1),
-('Mariana Lima', 'mariana@email.com', 'hash4', 'marilima', 3, 3);
+INSERT INTO `mydb`.`USUARIO` (`nome`, `email`, `senha`, `username`, `TIPO_PERFIL_id_perfil`) VALUES 
+('Vinicius Silva', 'vinicius@email.com', 'hash1', 'vini_dev', 1),
+('Ana Souza', 'ana@email.com', 'hash2', 'anasouza', 2),
+('Carlos Eduardo', 'carlos@email.com', 'hash3', 'carlosedu', 3),
+('Mariana Lima', 'mariana@email.com', 'hash4', 'marilima', 3);
 
 -- Inserir Membros dos Grupos
 INSERT INTO `mydb`.`MEMBRO_GRUPO` (`GRUPO_CANAL_id_grupo`, `USUARIO_id_usuario`) VALUES 
