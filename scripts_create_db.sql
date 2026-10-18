@@ -34,16 +34,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`USUARIO` (
   `username` VARCHAR(50) NOT NULL UNIQUE,
   `data_cadastro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `TIPO_PERFIL_id_perfil` INT NOT NULL,
-  `GRUPO_CANAL_id_grupo` INT NOT NULL,
   PRIMARY KEY (`id_usuario`),
   FOREIGN KEY (`TIPO_PERFIL_id_perfil`)
     REFERENCES `mydb`.`TIPO_PERFIL` (`id_perfil`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  FOREIGN KEY (`GRUPO_CANAL_id_grupo`)
-    REFERENCES `mydb`.`GRUPO_CANAL` (`id_grupo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
 );
 
 -- Table `mydb`.`MEMBRO_GRUPO`
