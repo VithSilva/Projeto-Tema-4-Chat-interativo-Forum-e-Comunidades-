@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`USUARIO` (
   FOREIGN KEY (`TIPO_PERFIL_id_perfil`)
     REFERENCES `mydb`.`TIPO_PERFIL` (`id_perfil`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE NO ACTION
 );
 
 -- Table `mydb`.`MEMBRO_GRUPO`
